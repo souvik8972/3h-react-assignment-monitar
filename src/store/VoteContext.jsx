@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext, useEffect, useState } from "react";
+import { createContext,  useState } from "react";
 
 const VoteContext=createContext({
     addVote:()=>{},
@@ -28,10 +28,7 @@ let [totalVote,setTotalVote]=useState(0)
         });
     };
 
-    useEffect(() => {
-        console.log(votes)
-    }, [addVote])
-
+    
 
     const removeVote = (id, name) => {
         setTotalVote(Pre => Pre - 1)

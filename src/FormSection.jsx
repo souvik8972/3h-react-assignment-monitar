@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import "./FormSection.css";
 import { VoteContext } from "./store/VoteContext";
+import VoteList from "./VoteList";
 
 const FormSection = () => {
     const { addVote, removeVote, votes, totalVote } = useContext(VoteContext);
@@ -24,7 +25,7 @@ const FormSection = () => {
     return (
         <div>
             <h2>Vote for Monitor</h2>
-            <p> {totalVote}</p>
+            <p> Total Vote :{totalVote}</p>
             <button onClick={() => setVisibleForm(true)}>Vote</button>
             {visibleForm && (
                 <div className="form-container">
@@ -50,24 +51,11 @@ const FormSection = () => {
                     </form>
                 </div>
             )}
-            <h3>Votes:</h3>
-            <ul>
-                {Object.entries(votes).map(([id, names]) => (
-                    <li key={id}>
-                        Monitor {id}: <p>Total Votes:{names.length}</p>
-                        <ul>
-                            {names.map((name, index) => (
-                                <li key={index}>
-                                    {name}
-                                    <button onClick={() => handleDelete(id, name)}>Delete</button>
-                                </li>
-                            ))}
-                        </ul>
-                    </li>
-                ))}
-            </ul>
+            <VoteList votes={votes} handleDelete={handleDelete} />
         </div>
     );
 };
+
+
 
 export default FormSection;
